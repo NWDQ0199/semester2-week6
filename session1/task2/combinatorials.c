@@ -31,20 +31,20 @@ int main(int argc, char **argv)
 	*/
 	if(argc!=4)
 	{
-		printf("Usage:\n    ./combinatorials n C k\n    ./combinatorials n P k");
+		printf("Usage:\n    ./combinatorials n C k\n    ./combinatorials n P k\n");
 		return 1;
 	}
 	int n=atoi(argv[1]);
 	int k=atoi(argv[3]);
 	if(strcmp(argv[2],"C")==0)
 	{
-		int nCr=factorial(n)/(factorial(r)*factorial(n-r));
-		printf("%iC%i=%i",n,k,nCr);
+		int nCr=factorial(n)/(factorial(k)*factorial(n-k));
+		printf("%iC%i=%i\n",n,k,nCr);
 	}
 	else if(strcmp(argv[2],"P")==0)
 	{
-		int nPr=factorial(n)/factorial(n-r);
-		printf("%iP%i=%i",n,k,nPr);
+		int nPr=factorial(n)/factorial(n-k);
+		printf("%iP%i=%i\n",n,k,nPr);
 	}
 }
 
