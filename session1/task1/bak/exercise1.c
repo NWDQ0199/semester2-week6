@@ -1,28 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int getint(char* str,int* out);
-
 int main()
 {
 	int speed_limit, driver_speed, fine=0;
+	char input[20];
 
 	// Get user input for speed limit
-	int count=getint("Enter the speed limit: ",&speed_limit);
-	//printf("%i\n",count);
-	if(count==0)
+	printf("Enter the speed limit: ");
+	if(fgets(input,sizeof(input),stdin))
 	{
-		printf("Invalid input");
-		return 1;
+		sscanf(input,"%d",&speed_limit);
 	}
 
 	// Get user input for driver's speed
-	count=getint("Enter the driver's speed: ",&driver_speed);
-	//printf("%i\n",count);
-	if(count==0)
+	printf("Enter the driver's speed: ");
+	if(fgets(input,sizeof(input),stdin))
 	{
-		printf("Invalid input");
-		return 1;
+		sscanf(input, "%d", &driver_speed);
 	}
 
 	// Determine if the driver is speeding
@@ -43,6 +38,7 @@ int main()
 		{
 			fine=200;
 		}
+
 		printf("Fine: $%d\n",fine);
 	}
 	else
@@ -50,16 +46,4 @@ int main()
 		printf("No fine needed.\n");
 	}
 	return 0;
-}
-
-int getint(char* str,int* out)
-{
-	char input[20];
-	int found=0;
-	printf("%s",str);
-	if(fgets(input,sizeof(input),stdin))
-	{
-		found=sscanf(input,"%d",out);
-	}
-	return found;
 }
