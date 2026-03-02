@@ -9,7 +9,6 @@ int main()
 
 	// Get user input for speed limit
 	int count=getint("Enter the speed limit: ",&speed_limit);
-	//printf("%i\n",count);
 	if(count==0)
 	{
 		printf("Invalid input");
@@ -18,7 +17,6 @@ int main()
 
 	// Get user input for driver's speed
 	count=getint("Enter the driver's speed: ",&driver_speed);
-	//printf("%i\n",count);
 	if(count==0)
 	{
 		printf("Invalid input");

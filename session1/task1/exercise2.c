@@ -4,57 +4,75 @@
 
 #define PI 3.14159
 
-double rectangle_area(int height, int width) {
-  return width * height;
+double rectangle_area(int height, int width);
+double find_circle_area(double radius);
+double triangle_area(double base, double height);
+
+int main(int argc, char *argv[])
+{
+	if(argc<3)
+	{
+		printf("Usage:\n");
+		printf("	./%s rectangle width height\n",argv[0]);
+		printf("	./%s triangle base height\n",argv[0]);
+		printf("	./%s circle radius\n",argv[0]);
+		return 1;
+	}
+
+	char *shape=argv[1];
+
+	if(strcmp(shape,"rectangle")==0)
+	{
+		if(argc!=4)
+		{
+			printf("Error: Rectangle needs width and height.\n");
+			return 1;
+		}
+		double width=atof(argv[2]);
+		double height=atof(argv[3]);
+		printf("Rectangle Area: %.2f\n",rectangle_area(width,height));
+	}
+	else if(strcmp(shape,"triangle")==0)
+	{
+		if(argc!=4)
+		{
+			printf("Error: Triangle needs base and height.\n");
+			return 1;
+		}
+		double base=atof(argv[2]);
+		double height=atof(argv[3]);
+		printf("Triangle Area: %.2f\n",triangle_area(base, height));
+	}
+	else if(strcmp(shape,"circle")==0)
+	{
+		if (argc!=3)
+		{
+			printf("Error: Circle needs radius.\n");
+			return 1;
+		}
+		double radius=atof(argv[2]);
+		printf("Circle Area: %.2f\n",find_circle_area(radius));
+	}
+	else
+	{
+		printf("Error: Unknown shape '%s'. Use rectangle, triangle, or circle.\n",shape);
+		return 1;
+	}
+
+	return 0;
 }
 
-void find_circle_area(double radius) {
-  return PI * radius * radius;
+double rectangle_area(int height, int width)
+{
+	return width*height;
 }
 
-double triangle_area(double base, double height) {
-  printf("%f\n", 0.5 * base * height);
+double find_circle_area(double radius)
+{
+	return PI*radius*radius;
 }
 
-int main(int argc, char *argv[]) {
-  if (argc < 3) {
-    printf("Usage:\n");
-    printf("  ./shapes rectangle width height\n");
-    printf("  ./shapes triangle base height\n");
-    printf("  ./shapes circle radius\n");
-    return 1;
-  }
-
-  char *shape = argv[1];
-
-  if (strcmp(shape, "rectangle") == 0) {
-    if (argc != 4) {
-      printf("Error: Rectangle needs width and height.\n");
-      return 1;
-    }
-    double width = atof(argv[2]);
-    double height = atof(argv[3]);
-    printf("Rectangle Area: %.2f\n", rectangle_area(width, height));
-  } else if (strcmp(shape, "triangle") == 0) {
-    if (argc != 4) {
-      printf("Error: Triangle needs base and height.\n");
-      return 1;
-    }
-    double base = atof(argv[2]);
-    double height = atof(argv[3]);
-    printf("Triangle Area: %.2f\n", triangle_area(base, height));
-  } else if (strcmp(shape, "circle") == 0) {
-    if (argc != 3) {
-      printf("Error: Circle needs radius.\n");
-      return 1;
-    }
-    double radius = atof(argv[2]);
-    printf("Circle Area: %.2f\n", find_circle_area(radius));
-  } else {
-    printf("Error: Unknown shape '%s'. Use rectangle, triangle, or circle.\n",
-           shape);
-    return 1;
-  }
-
-  return 0;
+double triangle_area(double base, double height)
+{
+	return 0.5*base*height;
 }
